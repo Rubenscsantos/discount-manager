@@ -1,38 +1,57 @@
-public class DiscountManager
+using System;
+
+namespace Store
+{
+    public enum AccountType
     {
-        public decimal CalculateTotalWithDiscounts(Customer customer)
+        NewCustomer = 1,
+        RecentCustomer = 2,
+        PlatinumCustomer = 3,
+        LoyalCustomer = 4
+    }
+
+    public class DiscountManager
+    {
+        private decimal GetAccountTypeImplementation(AccountType accountType)
+        {
+            switch (accountType)
+            {            
+                case AccountType.RecentCustomer:
+                    return 0.1m;
+                case AccountType.PlatinumCustomer:
+                    return 0.7m;
+                case AccountType.LoyalCustomer:
+                    return 0.5m;
+                default:
+                    return 0m;
+            }
+        }
+
+        public decimal CalculateTotalWithDiscounts(Customer customer, decimal purchaseValue)
         {
             decimal totalPurchaseValue = 0;
 
-            decimal customerPurchaseValue = customer.purchaseValue;
+            decimal customerPurchaseValue = purchaseValue;
 
-            decimal discountAccordingToAmountOfYearsAsCustomer = CalculateDiscountAccordingToYearsAsCustomer(customer.yearsAsCustomer)
+            decimal discountAccordingToAmountOfYearsAsCustomer = CalculateDiscountAccordingToYearsAsCustomer(customer.YearsAsCustomer);
 
-            if (customer.accountType == 1)
-            {
-                totalPurchaseValue = customerPurchaseValue;
-            }
-            else if (customer.accountType == 2)
-            {
-                totalPurchaseValue = calculateSubTotal(customerPurchaseValue, 0.1m, discountAccordingToAmountOfYearsAsCustomer)                
-            }
-            else if (customer.accountType == 3)
-            {
-                totalPurchaseValue = calculateSubTotal(customerPurchaseValue, 0.7m, discountAccordingToAmountOfYearsAsCustomer)                
-            }
-            else if (customer.accountType == 4)
-            {
-                totalPurchaseValue = calculateSubTotal(customerPurchaseValue, 0.5m, discountAccordingToAmountOfYearsAsCustomer)                
-            }
+            AccountType customerAccountType = customer.AccountType;
+
+            decimal discountToBeApplied = GetAccountTypeImplementation(customerAccountType);
+            totalPurchaseValue = calculateSubTotal(customerPurchaseValue, discountToBeApplied, discountAccordingToAmountOfYearsAsCustomer);
 
             return totalPurchaseValue;
         }
-        public calculateSubTotal(decimal purchaseValue, decimal discount, decimal discountAccordingToAmountOfYearsAsCustomer)
+        public decimal calculateSubTotal(decimal purchaseValue, decimal discount, decimal discountAccordingToAmountOfYearsAsCustomer)
         {
-            discountedValue = AddDiscount(purchaseValue, discount)
+            if (discount == 0)
+            {
+                return purchaseValue;
+            }
+            decimal discountedValue = AddDiscount(purchaseValue, discount);
             return discountedValue - discountAccordingToAmountOfYearsAsCustomer * discountedValue;
         }
-        public CalculateDiscountAccordingToYearsAsCustomer(decimal yearsAsCustomer)
+        public decimal CalculateDiscountAccordingToYearsAsCustomer(decimal yearsAsCustomer)
         {
             if (yearsAsCustomer > 5)
             {
@@ -40,9 +59,26 @@ public class DiscountManager
             }
             return yearsAsCustomer/100;
         }
-        public AddDiscount(decimal value, decimal discount)
+        public decimal AddDiscount(decimal value, decimal discount)
         {
             return value * discount;
+        }
+    }
+
+    public class Customer
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int YearsAsCustomer { get; set; }
+        public AccountType AccountType { get; set; }
+
+
+        public Customer(string firstName, string lastName, int yearsAsCustomer, AccountType accountType)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            YearsAsCustomer = yearsAsCustomer;
+            AccountType = accountType;
         }
     }
 }
