@@ -1,0 +1,104 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{FAA60045-48F9-43F3-88A2-77A52C68EC8E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ConsoleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>discount_manager</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="discount-manager.cs" />
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git\COMMIT_EDITMSG" />
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\FETCH_HEAD" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\fsmonitor-watchman.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\feat\adds-helper-methods" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\remotes\origin\feat\adds-helper-methods" />
+    <None Include=".git\logs\refs\remotes\origin\master" />
+    <None Include=".git\objects\11\979b3e0d07f6b69f0f90b77538984388b9ee36" />
+    <None Include=".git\objects\23\258fa6dea1b9cf994635b7ac58a2520bbdc65c" />
+    <None Include=".git\objects\2a\28276a5e5f9ad8abc525b1d779160aabc24455" />
+    <None Include=".git\objects\3f\a8bb3b39a052fcdd83ef399acf55fe0f4baff6" />
+    <None Include=".git\objects\48\e341a0954d5f8c2accf3a6731be28e5bb9c0de" />
+    <None Include=".git\objects\4b\4cb9e76f8ddf1b7d976e29a70eccd56dcbae65" />
+    <None Include=".git\objects\50\212b55b4014dda6fa209889a5ab6fae3737a39" />
+    <None Include=".git\objects\5f\9a736d1392128ecee6cfba4d6cb4ed2ad98a2c" />
+    <None Include=".git\objects\80\39abeb1f8e493ce1ee487cd2716970b64523d9" />
+    <None Include=".git\objects\82\bd4dabbe4d84350b5e7302185aa0c76183bc1c" />
+    <None Include=".git\objects\89\659d3f9140ae6af49eb0b2ad56775d135e6428" />
+    <None Include=".git\objects\b2\3571eae64217fe948f01f4b116ca253875984a" />
+    <None Include=".git\objects\b4\d59cab7bcad0944e699142302fe3c2a70ea505" />
+    <None Include=".git\objects\d0\5b7f0be7f240431d76b22333b58a36a50a4771" />
+    <None Include=".git\ORIG_HEAD" />
+    <None Include=".git\refs\heads\feat\adds-helper-methods" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\remotes\origin\feat\adds-helper-methods" />
+    <None Include=".git\refs\remotes\origin\master" />
+    <None Include=".vscode\launch.json" />
+    <None Include="package-lock.json" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\objects\pack\" />
+    <Folder Include=".git\refs\tags\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
