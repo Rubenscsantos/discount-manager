@@ -1,37 +1,30 @@
+using System;
+
 namespace Store
 {
+    public enum AccountType
+    {
+        NewCustomer = 1,
+        RecentCustomer = 2,
+        PlatinumCustomer = 3,
+        LoyalCustomer = 4
+    }
+
     public class DiscountManager
     {
-        public enum AccountType
+        private decimal GetAccountTypeImplementation(AccountType accountType)
         {
-            NewCustomer = 1,
-            RecentCustomer = 2,
-            PlatinumCustomer = 3,
-            LoyalCustomer = 4
-        }
-
-        private static IAccountTypeDiscountStrategy GetAccountTypeImplementation(AccountType accountType)
-        {
-            IAccountTypeDiscountStrategy accountTypeDiscountStrategy = null;
-
             switch (accountType)
-            {
-                case AccountType.NewCustomer:
-                    accountTypeDiscountStrategy = 0m;              
-                    break;
+            {            
                 case AccountType.RecentCustomer:
-                    accountTypeDiscountStrategy = 0.1m;
-                    break;
+                    return 0.1m;
                 case AccountType.PlatinumCustomer:
-                    accountTypeDiscountStrategy = 0.7m;
-                    break;
+                    return 0.7m;
                 case AccountType.LoyalCustomer:
-                accountTypeDiscountStrategy = 0.5m;
-                    break;
+                    return 0.5m;
                 default:
-                    break;
+                    return 0m;
             }
-            return accountTypeDiscountStrategy;
         }
 
         public decimal CalculateTotalWithDiscounts(Customer customer, decimal purchaseValue)
@@ -40,22 +33,22 @@ namespace Store
 
             decimal customerPurchaseValue = purchaseValue;
 
-            decimal discountAccordingToAmountOfYearsAsCustomer = CalculateDiscountAccordingToYearsAsCustomer(customer.yearsAsCustomer);
+            decimal discountAccordingToAmountOfYearsAsCustomer = CalculateDiscountAccordingToYearsAsCustomer(customer.YearsAsCustomer);
 
-            AccountType customerAccountType = customer.accountType
+            AccountType customerAccountType = customer.AccountType;
 
-            discountToBeApplied = GetAccountTypeImplementation(customerAccountType);
+            decimal discountToBeApplied = GetAccountTypeImplementation(customerAccountType);
             totalPurchaseValue = calculateSubTotal(customerPurchaseValue, discountToBeApplied, discountAccordingToAmountOfYearsAsCustomer);
 
             return totalPurchaseValue;
         }
         public decimal calculateSubTotal(decimal purchaseValue, decimal discount, decimal discountAccordingToAmountOfYearsAsCustomer)
         {
-            if discount == 0
+            if (discount == 0)
             {
                 return purchaseValue;
             }
-            discountedValue = AddDiscount(purchaseValue, discount);
+            decimal discountedValue = AddDiscount(purchaseValue, discount);
             return discountedValue - discountAccordingToAmountOfYearsAsCustomer * discountedValue;
         }
         public decimal CalculateDiscountAccordingToYearsAsCustomer(decimal yearsAsCustomer)
@@ -76,7 +69,16 @@ namespace Store
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime YearsAsCustomer { get; set; }
-        public int AccountType { get; set; }
+        public int YearsAsCustomer { get; set; }
+        public AccountType AccountType { get; set; }
+
+
+        public Customer(string firstName, string lastName, int yearsAsCustomer, AccountType accountType)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            YearsAsCustomer = yearsAsCustomer;
+            AccountType = accountType;
+        }
     }
 }
